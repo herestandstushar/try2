@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<title>Weather</title>
+		
+<link rel="icon" href="/img/weather.png">
+		<style>
+			div{
+				margin:3% 37%;
+				padding:5px 5px;
+			}
+			h1{
+				font-size:55px;
+				color:balck;
+			}
+			button{
+				padding:3px 3px;
+			}
+		</style>
+	
+	</head>
+	<body>
+		<div>
+			<h1>Weather</h1><br><br>
+			<form>
+				<input placeholder="location">
+				<button>search</button>
+			</form><br><br>
+			<p id="p1"></p>
+			<p id="p2"></p>
+			</div>
+			
+			<script>
+			
+			const frm=document.querySelector('form')
+			const search=document.querySelector('input')
+			var msg1=document.getElementById("p1")
+			var msg2=document.getElementById('p2')
+			
+			frm.addEventListener('submit',(e)=>{
+				e.preventDefault()
+				const location=search.value
+				msg1.innerHTML='Loading...'
+				fetch('http://localhost:3000/weather?address='+ location).then((response)=>{
+				response.json().then((data)=>{
+					if(data.error){
+						 msg1.innerHTML=data.error
+					}else{
+						msg2.innerHTML='Humidity=> '+ data.humidity
+						msg1.innerHTML='Temperture=> '+ data.temperture
+					}
+				})
+			})
+			})
+			</script>
+
+	</body>
+
+</html>

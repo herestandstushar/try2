@@ -2,6 +2,7 @@ const express=require('express')
 const hbs=require('hbs')
 const path=require('path')
 const code=require('./utils')
+const port =process.env.PORT || 3000
 const { query } = require('express')
 parpath=path.join(__dirname,'/views/partials')
 hbs.registerPartials(parpath)
@@ -34,6 +35,6 @@ app.get('/weather',(req, res)=>{
 app.get('',(req, res)=>{
     res.render('weather')
 })
-app.listen(3000,()=>{
-    console.log('Server is Running...')
+app.listen(port,()=>{
+    console.log('Server is Running... at port '+port)
 })
